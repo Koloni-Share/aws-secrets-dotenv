@@ -26,9 +26,14 @@ npm install aws-dotenv --save-dev
     "ANOTHER_ENV_VARIABLE"
   ]
 }
-````
+```
 
 ## Authentication :key:
+
+### Using AWS profile
+
+- Set a local environment variable `AWS_DEFAULT_REGION` with the desired AWS region.
+- Set a local environment variable `AWS_DEFAULT_PROFILE` with the name of the desired AWS profile. If not specified, the `default` is used.
 
 ### Using `.awsrc`
 
@@ -77,7 +82,7 @@ $ aws-dotenv (command) (stage)
 - set
 
 ### Stages
-Default stage is `dev`.
+Default stage is empty.
 
 Refers to the development stage of the application. It is used to differentiate the multiple `.env` configurations your project might use at any time. Generally in the form of `dev`, `test` and `prod` but the name does not matter.
 
@@ -94,6 +99,4 @@ Setting up `package.json`
     "set-env-prod": "env-cmd -f .env.prod aws-dotenv set prod/example",
     "pull-env-prod": "aws-dotenv pull prod/example prod",
   }
-````
-
-
+```
