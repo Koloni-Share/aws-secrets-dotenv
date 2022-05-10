@@ -17,7 +17,7 @@ const secretsManagerFunctionFactory = (
 				})
 				.promise();
 			console.log('Envrionment variables saved on AWS Secret Manager!');
-		} catch (error) {
+		} catch (error: any) {
 			if (error.message.includes('already exists')) {
 				await secretsManager
 					.updateSecret({
@@ -49,9 +49,9 @@ const secretsManagerFunctionFactory = (
 				''
 			);
 
-			fs.writeFileSync(`.env.${stage}`, envFileContent);
+			fs.writeFileSync(`.env${stage ? '.' + stage : ''}`, envFileContent);
 			console.log('The .env file has been written successfully!');
-		} catch (error) {
+		} catch (error: any) {
 			console.error(error, error.stack);
 			throw error;
 		}

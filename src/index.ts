@@ -15,9 +15,12 @@ if(fs.existsSync(`.awsrc`)) {
 	})
 } else {
 	AWS.config.update({ region: process.env.AWS_DEFAULT_REGION });
+    if (process.env.AWS_DEFAULT_PROFILE) {
+		AWS.config.credentials = new AWS.SharedIniFileCredentials({
+			profile: process.env.AWS_DEFAULT_PROFILE,
+		});
+	}
 }
-
-
 
 import secretsManagerFunctionFactory from './secrets-manager';
 import getConfig from './get-config';
